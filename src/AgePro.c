@@ -479,7 +479,6 @@ void ReadInputDataFile()
 	if (!strstr(buffer,"AGEPRO VERSION 4.0"))
 	{
 		fprintf(stderr,"Not Current AgePro Input Data File\n");
-		exit(1);
 	}
 
 
