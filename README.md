@@ -1,4 +1,6 @@
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac nibh gravida, fermentum urna eget, iaculis purus. In in commodo turpis. Duis ut arcu eget ante suscipit scelerisque quis ultrices nibh. In porttitor, nisi eget ullamcorper consectetur, erat lorem porttitor orci, at facilisis ex nunc. 
+This the private repository for the development of the AGEPRO model. 
+Owner: Jon Brodziak
+Email: Jon.Brodziak@NOAA.GOV
 
 ## Github Disclaimer
 
