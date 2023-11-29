@@ -1,4 +1,4 @@
-### This the private repository for the development of the AGEPRO model. 
+### This is the private repository for the development of the AGEPRO model. 
 ### Owner: Jon Brodziak
 ### Email: Jon.Brodziak@NOAA.GOV
 
