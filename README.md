@@ -1,5 +1,5 @@
 # agepro-dev
-### agepro-dev is a private repository for the development of the AGEPRO model. 
+### This is a private repository for the development of the AGEPRO model. 
 ### Owner: Jon Brodziak
 ### Email: Jon.Brodziak@NOAA.GOV
 
