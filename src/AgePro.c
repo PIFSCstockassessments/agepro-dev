@@ -384,6 +384,7 @@ int main(int argc, char **argv)
 	for (k = 0; k < kfiles; k++)
 		fclose(fp[k]);
 
+   
 	fclose(fp3);
 	fclose(fp4);
 	fclose(fp5);
@@ -394,7 +395,8 @@ int main(int argc, char **argv)
 	fclose(fp10);
 	fclose(fp11);
 	fclose(fp12);
-
+	
+ 
 	if (DataFlag)
 	{
 		fclose(fx1);
@@ -441,6 +443,102 @@ int main(int argc, char **argv)
 
 	if (ExportRFlag)
 		ExportR(fname,dstrng,tstrng);
+	
+	/* Clean up auxiliary files using StockSummaryFlag */
+	
+	j = StockSummaryFlag;
+	if (j == 0) j = 1;
+
+	
+	switch(j)
+	{
+		case 3:
+			printf("Case 3: Keeping all auxiliary output files\n");
+			break;
+		case 2:
+			printf("Case 2: Deleting stock numbers at age file and keeping all other auxiliary output files\n");
+			fclose(fp3);
+			strcpy(fname,fn);
+			c = strrchr(fname,'.');
+			*c = '\0';
+			strcat(fname,".xx1");
+			remove(fname);
+			break;
+		case 1:
+			printf("Case 1: Deleting all auxiliary output files\n");
+			fclose(fp3);
+			strcpy(fname,fn);
+			c = strrchr(fname,'.');
+			*c = '\0';
+			strcat(fname,".xx1");
+			remove(fname);
+			
+			fclose(fp4);
+			strcpy(fname,fn);
+			c = strrchr(fname,'.');
+			*c = '\0';
+			strcat(fname,".xx2");
+			remove(fname);
+						
+			fclose(fp5);
+			strcpy(fname,fn);
+			c = strrchr(fname,'.');
+			*c = '\0';
+			strcat(fname,".xx3");
+			remove(fname);
+									
+			fclose(fp6);
+			strcpy(fname,fn);
+			c = strrchr(fname,'.');
+			*c = '\0';
+			strcat(fname,".xx4");
+			remove(fname);
+												
+			fclose(fp7);
+			strcpy(fname,fn);
+			c = strrchr(fname,'.');
+			*c = '\0';
+			strcat(fname,".xx5");
+			remove(fname);
+															
+			fclose(fp8);
+			strcpy(fname,fn);
+			c = strrchr(fname,'.');
+			*c = '\0';
+			strcat(fname,".xx6");
+			remove(fname);
+																		
+			fclose(fp9);
+			strcpy(fname,fn);
+			c = strrchr(fname,'.');
+			*c = '\0';
+			strcat(fname,".xx7");
+			remove(fname);
+																					
+			fclose(fp10);
+			strcpy(fname,fn);
+			c = strrchr(fname,'.');
+			*c = '\0';
+			strcat(fname,".xx8");
+			remove(fname);
+																								
+			fclose(fp11);
+			strcpy(fname,fn);
+			c = strrchr(fname,'.');
+			*c = '\0';
+			strcat(fname,".xx9");
+			remove(fname);
+																											
+			fclose(fp12);
+			strcpy(fname,fn);
+			c = strrchr(fname,'.');
+			*c = '\0';
+			strcat(fname,".xx10");
+			remove(fname);
+	}
+	
+		
+
 
 	return(0);
 
@@ -4032,7 +4130,7 @@ void InitSummaryTables()
 
 	WorkMat = AllocMatrix(k,NYears);
 	
-	if (StockSummaryFlag)
+	if (StockSummaryFlag > 0)
 		WorkMat2 = AllocMatrix(k,NAges);
 
 	if ((WorkVec = (double *) calloc(k,sizeof(double))) == NULL)
@@ -4096,7 +4194,7 @@ void SaveProjectionResults()
 	long i, j, k;
 
 
-	if (StockSummaryFlag)
+	if (StockSummaryFlag > 0)
 	{
 
 		for (j = 0; j < NYears; j++)
@@ -4160,7 +4258,7 @@ void SaveProjectionResults()
 	fprintf(fp11,"\n");
 
 	if (NFleet > 1)
-	{
+	  {
 		for (i = 0; i < NFleet; i++)
 		{
 			for (j = 0; j < NYears; j++)
@@ -4180,7 +4278,7 @@ void SaveProjectionResults()
 			fprintf(fp12,"\n");
 
 		}
-	}
+	  }	
 
 	if (DataFlag)
 	{
@@ -5723,7 +5821,7 @@ void SummaryReport(char *fname,char *ds,char *ts)
 
 	fclose(fp1);
 
-	if (StockSummaryFlag)
+	if (StockSummaryFlag > 0)
 	{
 
 		printf("JAN-1 Stock Numbers at Age... \n");
@@ -7227,7 +7325,7 @@ void ExportR(char *fname,char *ds,char *ts)
 			fprintf(fp2,"'%d'),\n",NFYear+i);
 	}
 
-	if (StockSummaryFlag || ThreshFlag || RebuildFlag || PStarFlag)
+	if ((StockSummaryFlag > 0) || ThreshFlag || RebuildFlag || PStarFlag)
 		fprintf(fp2,"class='data.frame')),\n\n");
 	else
 		fprintf(fp2,"class='data.frame'))\n\n");
@@ -7236,7 +7334,7 @@ void ExportR(char *fname,char *ds,char *ts)
 
 	/* Stock Numbers at Age */
 
-	if (StockSummaryFlag)
+	if (StockSummaryFlag > 0)
 	{
 		ymat = AllocMatrix(NAges,kx);
 
@@ -7538,7 +7636,7 @@ void ExportR(char *fname,char *ds,char *ts)
 	fprintf(fp2,"'fmult'");
 
 
-	if (StockSummaryFlag)
+	if (StockSummaryFlag > 0)
 	{
 		for (i = 0; i < NYears; i++)
 			fprintf(fp2,",'stock%ld'",NFYear+i);
@@ -7616,7 +7714,7 @@ void ReportPercentLevel()
 		fprintf(fp2,"%10.4f ",PercRepMat[j][NAges+7]);
 	fprintf(fp2,"\n");
 
-	if (StockSummaryFlag)
+	if (StockSummaryFlag > 0)
 	{
 		fprintf(fp2,"\nStock Numbers at Age\n");
 		for (i = 0; i < NAges; i++)
