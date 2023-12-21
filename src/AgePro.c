@@ -1,4 +1,4 @@
-/* AGEPRO Version 4.2.2
+/* AGEPRO Version 4.2.3
 **
 ** 12-December-2023: Added auxiliary file output options to StockSummaryFlag
 **
