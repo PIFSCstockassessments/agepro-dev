@@ -1,0 +1,31 @@
+---
+format:
+  pdf: 
+    documentclass: article
+    geometry: landscape
+---
+\newpage
+
+```{mermaid}
+graph TD
+    Z(AGEPRO 4.2<br>StockSummaryFlag<br>Implementation) -- Value = 0 --> A(No Numbers<br>At Age Output<br><br>Output Auxiliary<br>Files 2 to 10) 
+    Z -- Value = 1 --> B(Output<br>Numbers<br>At Age<br><br>Output Auxiliary<br>Files 1 to 10)
+```
+\newpage
+
+```{mermaid}
+graph TD
+    Z(AGEPRO 4.24<br>StockSummaryFlag<br>Implementation) -- Value = 1 --> A(Output<br>Numbers<br>At Age<br><br>No Auxiliary<br>File Output) 
+    Z -- Value = 2 --> B(Output<br>Numbers<br>At Age<br><br>Output Auxiliary<br>Files 2 to 10)
+    Z -- Value = 3 --> C(Output<br>Numbers<br>At Age<br><br>Output Auxiliary<br>Files 1 to 10)
+```
+\newpage
+
+```{mermaid}
+graph TD
+    Z(AGEPRO 4.25<br>AuxiliaryOutputFlag<br>Implementation) -- Value = 0 --> A(No Numbers<br>At Age Output<br><br>Output Auxiliary<br> Files 2 to 10) 
+   Z -- Value = 1 --> B(Output<br>Numbers<br>At Age<br><br>Output Auxiliary<br>Files 1 to 10)
+   Z -- Value = 2 --> C(No Numbers<br>At Age Output<br><br>No Auxiliary<br>File Output)
+      Z -- Value = 3 --> D(Output<br>Numbers<br>At Age<br><br>No Auxiliary<br>File Output)
+      Z -- Value = 4 --> E(Output<br>Numbers<br>At Age<br><br>Output Auxiliary<br>Files 2 to 10)
+```
