@@ -27,3 +27,6 @@ for outputting the stock summary distributions and for outputting the auxiliary 
 In Version 4.25, the implementation of the AuxiliaryOutputFlag matches the behavior of
 
 StockSummaryFlag in version 4.20 for both possible values of the logical flag (0 and 1).
+
+📄 [Click here to view the Stock Summary diagram (PDF)](agepro-dev/diagrams/StockSummaryFlag-pdf.pdf)
+
