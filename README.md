@@ -1,7 +1,6 @@
 # agepro-dev
 ### This is a private PIFSC repository for the development of the AGEPRO model. 
-### Owner: Jon Brodziak
-### Email: Jon.Brodziak@NOAA.GOV
+### Owner: Jon Brodziak (Jon.Brodziak@NOAA.GOV)
 ### Contributors: Eric Fletcher (Eric.Fletcher@NOAA.GOV)
 
 ## Github Disclaimer
