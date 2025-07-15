@@ -42,7 +42,7 @@ long kfiles;
 long hcount;
 
 long DiscFlag;
-long StockSummaryFlag;
+long AuxiliaryOutputFlag;
 long HarvestFlag;
 long ThreshFlag;
 long RetroFlag;

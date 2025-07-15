@@ -1,8 +1,4 @@
-/* AGEPRO Version 4.2.3
-**
-** 12-December-2023: Added auxiliary file output options to StockSummaryFlag
-**
-** 16-June-2022: Added USA Government disclaimer 
+/* AGEPRO Version 4.25
 **
 ** File: agepro.c
 **
@@ -12,7 +8,7 @@
 ** AGE-Structured PROjection (AGEPRO) software project.
 **
 ** This software is a "United States Government Work" under the terms of the
-** United States Copyright Act.  It was written as part of the author's official
+** United States Copyright Act. It was written as part of the author's official
 ** duties as a United States Government employee and thus cannot be copyrighted.
 ** This software is freely available to the public for use. The National Oceanic
 ** And Atmospheric Administration and the U.S. Government have not placed any
@@ -48,7 +44,7 @@ int main(int argc, char **argv)
 
 	if (argc < 2)
 	{
-		fprintf(stderr,"usage: agepro40  filename\n");
+		fprintf(stderr,"Usage: agepro.exe  input-filename\n");
 		exit(1);
 	}
 
@@ -460,19 +456,20 @@ int main(int argc, char **argv)
 	if (ExportRFlag)
 		ExportR(fname,dstrng,tstrng);
 	
-	/* Clean up auxiliary files using StockSummaryFlag */
+	/* Clean up auxiliary files using AuxiliaryOutputFlag */
 	
-	j = StockSummaryFlag;
-	if (j == 0) j = 1;
-
+	j = AuxiliaryOutputFlag;
+	if (j==1) j=1;
+	else if (j==0 || j==4) j=2;
+	else if (j==2 || j==3) j=3;
 	
 	switch(j)
 	{
-		case 3:
-			printf("Case 3: Keeping all auxiliary output files\n");
+		case 1:
+			printf("Case 1: Keeping all auxiliary output files\n");
 			break;
 		case 2:
-			printf("Case 2: Deleting stock numbers at age file and keeping all other auxiliary output files\n");
+			printf("Case 2: Keeping auxiliary output files 2 to 10\n");
 			fclose(fp3);
 			strcpy(fname,fn);
 			c = strrchr(fname,'.');
@@ -480,8 +477,8 @@ int main(int argc, char **argv)
 			strcat(fname,".xx1");
 			remove(fname);
 			break;
-		case 1:
-			printf("Case 1: Deleting all auxiliary output files\n");
+		case 3:
+			printf("Case 3: Deleting all auxiliary output files\n");
 			fclose(fp3);
 			strcpy(fname,fn);
 			c = strrchr(fname,'.');
@@ -570,7 +567,7 @@ void ReadInputDataFile()
 
 
 	RetroFlag = 0;
-	StockSummaryFlag = 0;
+	AuxiliaryOutputFlag = 0;
 	ThreshFlag = 0;
 	HarvestFlag = 0;
 	RebuildFlag = 0;
@@ -1361,7 +1358,7 @@ void ReadInputDataFile()
 		{
 			fgets(buffer,MAXBUF-1,fp1);				
 			tok = strtok(buffer," \t\r\n");
-			StockSummaryFlag = atol(tok);
+			AuxiliaryOutputFlag = atol(tok);
 			tok = strtok(NULL," \t\r\n");
 			DataFlag = atol(tok);
 			tok = strtok(NULL," \t\r\n");
@@ -4146,7 +4143,7 @@ void InitSummaryTables()
 
 	WorkMat = AllocMatrix(k,NYears);
 	
-	if (StockSummaryFlag > 0)
+	if (AuxiliaryOutputFlag == 1 || AuxiliaryOutputFlag == 3 || AuxiliaryOutputFlag == 4)
 		WorkMat2 = AllocMatrix(k,NAges);
 
 	if ((WorkVec = (double *) calloc(k,sizeof(double))) == NULL)
@@ -4209,8 +4206,7 @@ void SaveProjectionResults()
 {
 	long i, j, k;
 
-
-	if (StockSummaryFlag > 0)
+	if (AuxiliaryOutputFlag == 1 || AuxiliaryOutputFlag == 3 || AuxiliaryOutputFlag == 4)
 	{
 
 		for (j = 0; j < NYears; j++)
@@ -4261,7 +4257,7 @@ void SaveProjectionResults()
 		fprintf(fp9,"%12.6E  ",Landings[j]);
 	fprintf(fp9,"\n");
 	
-	if (DiscFrac)
+	if (DiscFlag)
 	{
 		for (j = 0; j < NYears; j++)
 			fprintf(fp10,"%12.6E  ",Discards[j]);
@@ -4685,7 +4681,7 @@ void SummaryReport(char *fname,char *ds,char *ts)
 
 	printf("Summary Reports ...\n");
 
-	fprintf(fp2,"AGEPRO VERSION 4.2\n\n");
+	fprintf(fp2,"AGEPRO VERSION 4.2.5\n\n");
 
 	fprintf(fp2,"%s\n\n",Model);
 
@@ -5837,7 +5833,7 @@ void SummaryReport(char *fname,char *ds,char *ts)
 
 	fclose(fp1);
 
-	if (StockSummaryFlag > 0)
+	if (AuxiliaryOutputFlag == 1 || AuxiliaryOutputFlag == 3 || AuxiliaryOutputFlag == 4)
 	{
 
 		printf("JAN-1 Stock Numbers at Age... \n");
@@ -6501,7 +6497,7 @@ void ExportR(char *fname,char *ds,char *ts)
 	fprintf(fp2,"structure(list(\n\n");
 
 	fprintf(fp2,"metadata = structure(list(\n");
-	fprintf(fp2,"     model='AGEPRO Version 4.2',\n");
+	fprintf(fp2,"     model='AGEPRO Version 4.2.5',\n");
 	fprintf(fp2,"     descr='%s',\n",Model);
 	fprintf(fp2,"     rundate='%s  %s',\n",ds,ts);
 
@@ -7341,7 +7337,7 @@ void ExportR(char *fname,char *ds,char *ts)
 			fprintf(fp2,"'%d'),\n",NFYear+i);
 	}
 
-	if ((StockSummaryFlag > 0) || ThreshFlag || RebuildFlag || PStarFlag)
+	if (AuxiliaryOutputFlag == 1 || AuxiliaryOutputFlag == 3 || AuxiliaryOutputFlag == 4 || ThreshFlag || RebuildFlag || PStarFlag)
 		fprintf(fp2,"class='data.frame')),\n\n");
 	else
 		fprintf(fp2,"class='data.frame'))\n\n");
@@ -7350,7 +7346,7 @@ void ExportR(char *fname,char *ds,char *ts)
 
 	/* Stock Numbers at Age */
 
-	if (StockSummaryFlag > 0)
+	if (AuxiliaryOutputFlag == 1 || AuxiliaryOutputFlag == 3 || AuxiliaryOutputFlag == 4)
 	{
 		ymat = AllocMatrix(NAges,kx);
 
@@ -7651,8 +7647,7 @@ void ExportR(char *fname,char *ds,char *ts)
 
 	fprintf(fp2,"'fmult'");
 
-
-	if (StockSummaryFlag > 0)
+	if (AuxiliaryOutputFlag == 1 || AuxiliaryOutputFlag == 3 || AuxiliaryOutputFlag == 4)
 	{
 		for (i = 0; i < NYears; i++)
 			fprintf(fp2,",'stock%ld'",NFYear+i);
@@ -7730,7 +7725,7 @@ void ReportPercentLevel()
 		fprintf(fp2,"%10.4f ",PercRepMat[j][NAges+7]);
 	fprintf(fp2,"\n");
 
-	if (StockSummaryFlag > 0)
+	if (AuxiliaryOutputFlag == 1 || AuxiliaryOutputFlag == 3 || AuxiliaryOutputFlag == 4)
 	{
 		fprintf(fp2,"\nStock Numbers at Age\n");
 		for (i = 0; i < NAges; i++)
