@@ -1,8 +1,8 @@
-# Makefile to build agepro.exe from C sources with headers in Include/
+# Makefile to build agepro.exe from C sources with headers in include/
 
 # Compiler and flags
 CC = gcc
-CFLAGS = -IInclude -Wall -O2
+CFLAGS = -Iinclude -Wall -O2
 
 # Source and object files
 SRCS = agepro.c boxmuller.c ranx.c util.c
