@@ -1,6 +1,16 @@
 ### test-cases
 
-This folder contains test cases for AGEPRO versions 4.24 and 4.25.
+The folder test-cases contains test cases for AGEPRO versions 4.24 and 4.25.
+
+The test cases for version 4.24 verify the change in the implementation
+
+of StockSummaryFlag from version 4.2. The test cases for version 4.25
+
+verify the new implementation of AuxiliaryOutputFlag from version 4.24.
+
+[View Stock Summary PDF](../diagrams/StockSummaryFlag-pdf.pdf)
+
+<br>
 
 For version 4.24, the test cases are named test#.INP.
 
@@ -27,6 +37,3 @@ for outputting the stock summary distributions and for outputting the auxiliary 
 In Version 4.25, the implementation of the AuxiliaryOutputFlag matches the behavior of
 
 StockSummaryFlag in version 4.20 for both possible values of the logical flag (0 and 1).
-
-[View Stock Summary PDF](../diagrams/StockSummaryFlag-pdf.pdf)
-
