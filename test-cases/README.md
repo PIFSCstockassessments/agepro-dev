@@ -4,7 +4,7 @@ The folder test-cases contains test cases for AGEPRO versions 4.24 and 4.25.
 
 The test cases for version 4.24 verify the change in the implementation
 
-of StockSummaryFlag from version 4.2. The test cases for version 4.25
+of StockSummaryFlag from version 4.20. The test cases for version 4.25
 
 verify the new implementation of AuxiliaryOutputFlag from the deprecated
 
