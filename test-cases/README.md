@@ -6,7 +6,9 @@ The test cases for version 4.24 verify the change in the implementation
 
 of StockSummaryFlag from version 4.2. The test cases for version 4.25
 
-verify the new implementation of AuxiliaryOutputFlag from version 4.24.
+verify the new implementation of AuxiliaryOutputFlag from the deprecated
+
+StockSummaryFlag in version 4.24.
 
 [View Stock Summary PDF](../diagrams/StockSummaryFlag-pdf.pdf)
 
