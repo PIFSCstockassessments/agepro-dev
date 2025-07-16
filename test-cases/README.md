@@ -28,5 +28,6 @@ In Version 4.25, the implementation of the AuxiliaryOutputFlag matches the behav
 
 StockSummaryFlag in version 4.20 for both possible values of the logical flag (0 and 1).
 
-📄 [Click here to view the Stock Summary diagram (PDF)](agepro-dev/diagrams/StockSummaryFlag-pdf.pdf)
+[View Stock Summary PDF](agepro-dev/diagrams/StockSummaryFlag-pdf.pdf)
+
 
