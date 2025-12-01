@@ -1,5 +1,5 @@
 # agepro-dev
-### This is a private PIFSC repository for the development of the AGEPRO model, version 4.25. 
+### This is a public PIFSC repository for the development of the AGEPRO model, version 4.25. 
 ### Owner: Jon Brodziak (Jon.Brodziak@NOAA.GOV)
 ### Contributors: Eric Fletcher (Eric.Fletcher@NOAA.GOV)
 
