@@ -208,7 +208,7 @@ double *PSCatch;
 double *PQuota;
 double PStarF;
 
-/* Threhold */
+/* Threshold */
 
 double SSBThresh;
 double StockBioThresh;

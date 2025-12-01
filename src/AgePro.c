@@ -587,9 +587,9 @@ void ReadInputDataFile()
 
 
 	fgets(buffer,MAXBUF-1,fp1);
-	if (!strstr(buffer,"AGEPRO VERSION 4.0"))
+	if (!strstr(buffer,"AGEPRO VERSION 4.25"))
 	{
-		fprintf(stderr,"Not Current AgePro Input Data File\n");
+		fprintf(stderr,"Check the input file version, it may not compatible with AGEPRO version 4.25\n");
 	}
 
 
@@ -4681,7 +4681,7 @@ void SummaryReport(char *fname,char *ds,char *ts)
 
 	printf("Summary Reports ...\n");
 
-	fprintf(fp2,"AGEPRO VERSION 4.2.5\n\n");
+	fprintf(fp2,"AGEPRO VERSION 4.25\n\n");
 
 	fprintf(fp2,"%s\n\n",Model);
 
@@ -6497,7 +6497,7 @@ void ExportR(char *fname,char *ds,char *ts)
 	fprintf(fp2,"structure(list(\n\n");
 
 	fprintf(fp2,"metadata = structure(list(\n");
-	fprintf(fp2,"     model='AGEPRO Version 4.2.5',\n");
+	fprintf(fp2,"     model='AGEPRO Version 4.25',\n");
 	fprintf(fp2,"     descr='%s',\n",Model);
 	fprintf(fp2,"     rundate='%s  %s',\n",ds,ts);
 
